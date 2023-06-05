@@ -13,7 +13,7 @@ export class SipComponent {
   fundDetails: any;
   amount: number = 500;
   freq: string = '';
-  orderDate: string = new Date(Date.now()).toLocaleDateString();
+  orderDate: string = ''
   id: string | any = '';
   loading: boolean = false;
   unit: number | any;
@@ -28,7 +28,7 @@ export class SipComponent {
   ) {}
 
   ngOnInit() {
-    this.orderDate = new Date(Date.now()).toLocaleDateString();
+    // this.orderDate = new Date(Date.now()).toLocaleDateString();
     console.log(this.orderDate);
     this.id = this.route.snapshot.paramMap.get('id');
     this.api.detailById(Number(this.id)).subscribe((data) => {

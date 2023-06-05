@@ -23,8 +23,9 @@
             </td>
           <td>
             <!-- HDFC BANK <br /> -->
-            {{data.transactionTypeId ===1 ? 'Payment received':'withdraw'}}
+            {{data.description}}
           </td>
+          <!-- ===1 ? 'Payment received':'withdraw' -->
           <td>success</td>
           <td>{{ data.walletAmount }}</td>
         </tr>

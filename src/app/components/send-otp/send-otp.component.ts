@@ -5,6 +5,7 @@ import { FormBuilder } from '@angular/forms';
 import { LoginService } from 'src/app/services/login.service';
 
 import { UpdatePassword } from 'src/app/classes/update-password';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -42,6 +43,24 @@ export class SendOtpComponent {
     );
     console.log(user1)
     this.loginService.updatepassword(otp,user1).subscribe((res:any)=>{
+      Swal.fire({
+        title:res,
+        icon:res==='Enter Correct OTP or Resend the OTP'?'warning':'success',
+        showConfirmButton:true,
+        confirmButtonText:'ok',
+        confirmButtonColor:'teal'
+      }).then((result)=>{
+        if(result.value){
+          if(res==='Enter Correct OTP or Resend the OTP'){
+            return
+          }
+          else{
+          this.router.navigate(['/login'])
+        }
+        }
+
+      })
+
       console.log(res)
     })
   }

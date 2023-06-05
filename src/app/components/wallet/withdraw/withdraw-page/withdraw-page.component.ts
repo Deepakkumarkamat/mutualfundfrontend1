@@ -59,7 +59,7 @@ export class WithdrawPageComponent {
 
           // transactionHistory() {
           this.api
-            .addTransactionHistory(this.userId, 2, this.balancewithdraw)
+            .addTransactionHistory(this.userId, 'withdraw', this.balancewithdraw)
             .subscribe((res) => {
               // console.log(this.transaction)
               // alert(res);

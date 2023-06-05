@@ -479,3 +479,7 @@ body {
 .dropdown-menu {
   position: absolute;
 }
+.notification-list{
+
+  overflow-y: scroll;
+}

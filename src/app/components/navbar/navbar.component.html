@@ -42,12 +42,12 @@
 
           <ul class="dropdown-menu dropdown-menu-right notification-dropdown">
             <li>
-              <div class="notification-title">Notification</div>
+              <div class="notification-title" style="background-color: teal; color: white;">Notification</div>
 
-              <div class="notification-list">
-                <div class="list-group">
+              <div class="notification-list" data-spy="scroll" style="height: 200px;">
+                <div class="list-group"  >
                   <a
-                    href="#"
+                    *ngFor="let data of history"
                     class="list-group-item list-group-item-action active"
                   >
                     <div class="notification-info">
@@ -61,15 +61,15 @@
 
                       <div class="notification-list-user-block">
                         <span class="notification-list-user-name"
-                          >100</span
-                        >Money Received
+                          >{{ data.walletAmount }}  {{data.description}}</span
+                        >
 
                         <div class="notification-date">2 min ago</div>
                       </div>
                     </div>
                   </a>
 
-                  <a href="#" class="list-group-item list-group-item-action">
+                  <!-- <a href="#" class="list-group-item list-group-item-action">
                     <div class="notification-info">
                       <div class="notification-list-user-img">
                         <img
@@ -108,7 +108,7 @@
                         <div class="notification-date">2 min ago</div>
                       </div>
                     </div>
-                  </a>
+                  </a> -->
                 </div>
               </div>
             </li>
@@ -264,11 +264,11 @@
               <span class="status"></span><span class="ml-2">Available</span>
             </div>
 
-            <a class="dropdown-item" href="#"
+            <a class="dropdown-item"
               ><i class="fas fa-user mr-2"></i>Account</a
             >
 
-            <a class="dropdown-item" href="#"
+            <a class="dropdown-item"
               ><i class="fas fa-cog mr-2"></i>Setting</a
             >
 
