@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 
-<div *ngIf="portfolio.lenght < 1" class="container-fluid-1">
+<div *ngIf="portfolio.lenght == 0 || portfolio ===undefined" class="container-fluid-1">
   <div
     data-aos="fade-left"
     data-aos-offset="200"

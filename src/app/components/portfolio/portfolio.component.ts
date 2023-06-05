@@ -49,6 +49,7 @@ export class PortfolioComponent {
           console.log(res);
 
           this.portfolio = res;
+         this.portfolio= this.portfolio.filter((data:any)=>(data.unit>0))
 
           let allfundData: any | [];
 
@@ -58,6 +59,7 @@ export class PortfolioComponent {
             allfundData = res;
 
             this.portfolio = this.portfolio.map((data: any) => {
+              // if (data?.unit<=0) this.portfolio.pop();
               let index = allfundData.findIndex(
                 (fil: any) => fil.schemaId == data.mutualFundsId
               );

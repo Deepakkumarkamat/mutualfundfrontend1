@@ -108,18 +108,31 @@ body{
 .cool-card:hover{
   transform: scale(1.12);
   z-index: 500;
-  width:  25%;
-
+  width:  auto;
+  left: -1rem;
 }
 .card{
   transition: all 400ms ease-in-out;
 }
 .cool-card:hover .card{
-
-  background-image: linear-gradient(to right, rgb(96, 147, 235) 0%,#23f694 100%);
+backdrop-filter: blur(3px);
+  background-image: linear-gradient(to right, rgba(0, 128, 128, 0.315) 0%,rgba(0, 128, 128, 0.146) 100%);
   z-index: 500;
-transform: scaleX(1.2);
+/* transform: scaleX(1.2); */
+width: 110%;
+transform: scale(1.05);
   /* width: 140%; */
+}
+.card::before{
+  content: '';
+  border-left: #80be94;
+  border-left-width: 0px;
+  transition: all 300ms;
+}
+.cool-card:hover .card::before{
+  content: '';
+  border-left: #80be94;
+  border-left-width: 4px;
 }
  .card-title{
   max-width: 10ch;
