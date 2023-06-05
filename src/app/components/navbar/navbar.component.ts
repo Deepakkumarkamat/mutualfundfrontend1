@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { LoginService } from 'src/app/services/login.service';
+import { WalletService } from 'src/app/services/wallet.service';
+import { ApiService } from 'src/app/services/api.service';
 
 import Swal from 'sweetalert2';
 
@@ -14,9 +16,29 @@ import Swal from 'sweetalert2';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent {
-  constructor(private loginservice: LoginService, private router: Router) {}
-
+  history:any;
+  userId:any|any;
+  constructor(private loginservice: LoginService, private api:WalletService,private apii:ApiService,private router: Router) {}
+  getCurrentUser() {
+    return this.loginservice.getLoggedInUser();
+  }
   ngOnInit() {
+//from transactionhistory
+this.api.finduserid(this.getCurrentUser()).subscribe((response:any)=>{
+  console.log(response)
+  this.userId =response
+  console.log(this.userId)
+this.api.walletHistory(this.userId).subscribe((data)=>{
+  this.history=data
+  this.history=this.history.sort((a:any,b:any)=>Date.parse(b.transactionDate)-Date.parse(a.transactionDate))
+  console.log(this.history);
+
+  // this.show=true
+})
+
+})
+
+
     window.addEventListener('resize', () => {
       if (window.innerWidth < 650) {
         document
@@ -74,7 +96,5 @@ export class NavbarComponent {
     this.router.navigate(['register']);
   }
 
-  getCurrentUser() {
-    return this.loginservice.getLoggedInUser();
-  }
+
 }

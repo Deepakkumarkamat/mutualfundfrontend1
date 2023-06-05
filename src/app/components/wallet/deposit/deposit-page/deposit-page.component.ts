@@ -71,7 +71,7 @@ export class DepositPageComponent {
       // window.location.reload();
 
       this.api
-      .addTransactionHistory(this.userId, 1, this.add_balance)
+      .addTransactionHistory(this.userId, 'deposit', this.add_balance)
       .subscribe((res) => {
         // console.log(this.transaction)
         console.log(res)

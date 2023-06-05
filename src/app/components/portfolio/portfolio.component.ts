@@ -5,7 +5,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { LoginService } from 'src/app/services/login.service';
 import { WalletService } from 'src/app/services/wallet.service';
 import { AllfundService } from 'src/app/services/allfund.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-portfolio',
@@ -83,24 +83,26 @@ export class PortfolioComponent {
     });
   }
   sellMethod(fundId: number, price: number, unit: number) {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     this.http
       .post(
         `http://34.234.150.41:5151/transactionhistory/insert?username=${this.getCurrentUser()}&mutualFundsId=${fundId}&type=sell&price=${price}&unit=${unit}`,
-        {}
+        { headers: headers },
+        { responseType: 'text' }
       )
-      .subscribe((res) => {
-        console.log(res)
+      .subscribe((res: any) => {
+        // alert(res)
+        console.log(res);
         Swal.fire({
-          title:'Sold',
-          text:'Amount has been added to you account!',
-          showConfirmButton:true,
-          confirmButtonText:'ok',
-          confirmButtonColor:'teal'
-        }).then((result)=>{
-          if(result.value){
-
+          title: res === 'Data inserted successfully' ? 'Successfully Sold!' : res,
+          icon: res === 'Not enough units' ? 'warning' : 'success',
+          showConfirmButton: true,
+          confirmButtonText: 'ok',
+          confirmButtonColor: 'teal',
+        }).then((result) => {
+          if (result.value) {
           }
-        })
+        });
         // alert(res);
       });
   }

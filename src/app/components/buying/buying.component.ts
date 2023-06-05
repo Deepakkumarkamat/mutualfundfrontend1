@@ -11,7 +11,7 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class BuyingComponent {
   fundDetails: any;
-  amount: number = 0;
+  amount: number = 500;
   orderDate: string = ''
   id: string | any = ''
   loading: boolean = false;
