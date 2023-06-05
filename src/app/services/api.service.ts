@@ -75,4 +75,5 @@ return this.http.put(`http://34.234.150.41:6161/customer/verification?email=${em
   //     return this.http.get<any>(`${this.baseURL}/getUserName/${userName}`);
 
   //    }
+
 }

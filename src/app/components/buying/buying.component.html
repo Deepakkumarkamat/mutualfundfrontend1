@@ -34,7 +34,7 @@
         <!--- -------- continue button --------------------------------------------->
     <div style="margin-bottom: 90px">
       <button (click)="continue(amountRef)" type="button" class="btn btn-info"
-      [disabled]="amount===0">Continue</button>
+      [disabled]=" amountRef.value===''">Continue</button>
         <button id="modalBtn" style="display: none;" type="button" data-bs-toggle="modal"
         data-bs-target="#exampleModal"></button>
     </div>

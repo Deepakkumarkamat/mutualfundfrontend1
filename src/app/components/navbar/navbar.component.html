@@ -1,6 +1,8 @@
 <div class="dashboard-header" style="width: 100%; margin-bottom: 5rem">
-  <nav class="navbar navbar-expand-lg bg-white fixed-top" style="width: 100%;">
-    <a class="navbar-brand" style="text-transform: none;"  routerLink="/">Fund Fusion</a>
+  <nav class="navbar navbar-expand-lg bg-white fixed-top" style="width: 100%">
+    <a class="navbar-brand" style="text-transform: none" routerLink="/"
+      >Fund Fusion</a
+    >
 
     <button
       class="navbar-toggler"
@@ -42,34 +44,41 @@
 
           <ul class="dropdown-menu dropdown-menu-right notification-dropdown">
             <li>
-              <div class="notification-title" style="background-color: teal; color: white;">Notification</div>
+              <div
+                class="notification-title"
+                style="background-color: teal; color: white"
+              >
+                Notification
+              </div>
+              <div style="background-color:  rgba(177, 44, 44, 0.4);
+              backdrop-filter: blur(4px);">
+                <div class="notification-list">
+                  <div class="list-group">
+                    <a
+                      *ngFor="let data of history"
+                      class="list-group-item list-group-item-action active"
+                    >
+                      <div class="notification-info">
+                        <div class="notification-list-user-img">
+                          <img
+                            src="https://img.icons8.com/office/100/000000/administrator-female.png"
+                            alt=""
+                            class="user-avatar-md rounded-circle"
+                          />
+                        </div>
 
-              <div class="notification-list" data-spy="scroll" style="height: 200px;">
-                <div class="list-group"  >
-                  <a
-                    *ngFor="let data of history"
-                    class="list-group-item list-group-item-action active"
-                  >
-                    <div class="notification-info">
-                      <div class="notification-list-user-img">
-                        <img
-                          src="https://img.icons8.com/office/100/000000/administrator-female.png"
-                          alt=""
-                          class="user-avatar-md rounded-circle"
-                        />
+                        <div class="notification-list-user-block">
+                          <span class="notification-list-user-name"
+                            >{{ data.walletAmount }}
+                            {{ data.description }}</span
+                          >
+
+                          <div class="notification-date">2 min ago</div>
+                        </div>
                       </div>
+                    </a>
 
-                      <div class="notification-list-user-block">
-                        <span class="notification-list-user-name"
-                          >{{ data.walletAmount }}  {{data.description}}</span
-                        >
-
-                        <div class="notification-date">2 min ago</div>
-                      </div>
-                    </div>
-                  </a>
-
-                  <!-- <a href="#" class="list-group-item list-group-item-action">
+                    <!-- <a href="#" class="list-group-item list-group-item-action">
                     <div class="notification-info">
                       <div class="notification-list-user-img">
                         <img
@@ -109,13 +118,14 @@
                       </div>
                     </div>
                   </a> -->
+                  </div>
                 </div>
               </div>
             </li>
 
-            <li>
+            <!-- <li>
               <div class="list-footer"><a>View all notifications</a></div>
-            </li>
+            </li> -->
           </ul>
         </li>
 
@@ -264,13 +274,9 @@
               <span class="status"></span><span class="ml-2">Available</span>
             </div>
 
-            <a class="dropdown-item"
-              ><i class="fas fa-user mr-2"></i>Account</a
-            >
+            <a class="dropdown-item"><i class="fas fa-user mr-2"></i>Account</a>
 
-            <a class="dropdown-item"
-              ><i class="fas fa-cog mr-2"></i>Setting</a
-            >
+            <a class="dropdown-item"><i class="fas fa-cog mr-2"></i>Setting</a>
 
             <a class="dropdown-item" (click)="logout()"
               ><i class="fas fa-power-off mr-2"></i>Logout</a

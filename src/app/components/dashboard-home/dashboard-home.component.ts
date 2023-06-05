@@ -69,6 +69,7 @@ export class DashboardHomeComponent implements OnInit {
           console.log(res);
 
           this.portfolio = res;
+          this.portfolio= this.portfolio.filter((data:any)=>(data.unit>0))
 
           let allfundData: any | [];
 
