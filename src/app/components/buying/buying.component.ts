@@ -43,11 +43,11 @@ export class BuyingComponent {
 
       this.loading = false
       this.success=true
-      // setTimeout(() => {
-      //   this.success=false
-      //   document.getElementById('modalclose')?.click()
-      //   this.router.navigate(['dashboard'])
-      // }, 2000);
+      setTimeout(() => {
+        this.success=false
+        document.getElementById('modalclose')?.click()
+        this.router.navigate(['dashboard'])
+      }, 2000);
 
     }, err => {
       console.log(err)

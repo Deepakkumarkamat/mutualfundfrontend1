@@ -48,7 +48,7 @@ const routes: Routes = [
   {path: 'dashboard/portfolio', component: PortfolioComponent},
   {path: 'dashboard/account-details', component: AccountDetailsComponent},
   {path:'homepage/mutual-funds/:schemaId',component:MutualFundDetailsComponent},
-  {path:'dashboard/allfundsdetail/:id/wishlist/wishlist-page',component:WishlistPageComponent,canActivate:[AuthGuard]},
+  {path:'dashboard/allfundsdetail/wishlist/wishlist-page',component:WishlistPageComponent,canActivate:[AuthGuard]},
   {path:"dashboard/allfundsdetail/:schemaId",component:AllfundsdetailComponent},
   {path:'paymentoption',component:PaymentoptionComponent},
   {path:'wishlist',component:WishlistPageComponent},

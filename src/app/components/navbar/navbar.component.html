@@ -73,7 +73,7 @@
                             {{ data.description }}</span
                           >
 
-                          <div class="notification-date">2 min ago</div>
+                          <div class="notification-date">{{ data.transactionDate.substring(0, 10) }}</div>
                         </div>
                       </div>
                     </a>
@@ -186,6 +186,16 @@
                       alt=""
                     />
                     <span>Invest Now</span></a
+                  >
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
+                  <a routerLink="/wishlist" class="connection-item"
+                    ><img
+                    style="filter: opacity(0.5) drop-shadow(0 0 0 teal)"
+                    src="https://img.icons8.com/?size=512&id=15893&format=png"
+                    alt=""
+                  />
+                    <span>WishList Investment</span></a
                   >
                 </div>
               </div>

@@ -75,6 +75,7 @@ export class DepositPageComponent {
       .subscribe((res) => {
         // console.log(this.transaction)
         console.log(res)
+        this.add_balance=''
         // alert(res);
       });
     });

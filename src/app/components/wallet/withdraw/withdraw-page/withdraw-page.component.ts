@@ -63,6 +63,7 @@ export class WithdrawPageComponent {
             .subscribe((res) => {
               // console.log(this.transaction)
               // alert(res);
+              this.balancewithdraw=''
             });
           // }
         });

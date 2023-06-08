@@ -1,2 +1,100 @@
 <app-navbar></app-navbar>
-<div>{{data[0].fundHouse}}</div>
+<!-- <div>{{data[0].fundHouse}}</div> -->
+<!-- form here empty cart templete -->
+<div class="container-fluid mt-100" *ngIf="this.wishList.length==0">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h5>Cart</h5>
+        </div>
+        <div class="card-body cart">
+          <div class="col-sm-12 empty-cart-cls text-center">
+            <img
+              src="https://i.imgur.com/dCdflKN.png"
+              width="130"
+              height="130"
+              class="img-fluid mb-4 mr-3"
+            />
+            <h3><strong>Your Cart is Empty</strong></h3>
+            <h4></h4>
+            <a
+              href="/dashboard"
+              class="btn btn-primary cart-btn-transform m-3"
+              data-abc="true"
+              >continue Investment</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--  -->
+
+<!-- from here all wishlist -->
+<div class="pt-3" *ngIf="this.wishList.length!==0">
+  <div class="p-10 bg-surface-secondary">
+    <div class="container">
+      <div class="card">
+        <div class="card-header">
+          <h6>Portfolio</h6>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-hover table-nowrap">
+            <thead class="table-light">
+              <tr>
+                <th scope="col">Fund Name</th>
+                <th scope="col">Provider</th>
+                <th scope="col">Unit</th>
+                <th scope="col">Unit Price</th>
+                <th scope="col">Total</th>
+                <th scope="col">Remove</th>
+                <!-- <th scope="col">Date</th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let obj of wishList" class="zoom">
+                <td data-label="Job Title">
+                  <img
+                    [src]="
+                      'https://assets-netstorage.groww.in/mf-assets/logos/' +
+                      lower(obj.allfundData?.fundHouse) +
+                      '_groww.png'
+                    "
+                  />
+                  <span class="text-heading font-semibold">
+                    {{ obj.allfundData?.schemaName }}
+                  </span>
+                </td>
+                <td data-label="Email">
+                  <span>{{ obj.allfundData?.fundHouse }}</span>
+                </td>
+                <td data-label="Phone">
+                  <span class="text-current">{{ obj.unit }}</span>
+                </td>
+                <td data-label="Lead Score">
+                  <span class="text-current">{{ obj.price }}</span>
+                </td>
+                <td data-label="Company">
+                  <span class="badge bg-soft-success text-success">{{
+                    obj.price * obj.unit
+                  }}</span>
+                </td>
+                <td data-label="">
+                  <button
+                    class="btn"
+                    style="background-color: teal"
+                    (click)="removeWishList(this.userId, this.obj.mutualfundId)"
+                  >
+                    Remove
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

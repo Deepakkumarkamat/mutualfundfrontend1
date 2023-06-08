@@ -11,7 +11,7 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class SipComponent {
   fundDetails: any;
-  amount: number = 500;
+  amount: number = 0;
   freq: string = '';
   orderDate: string = ''
   id: string | any = '';
@@ -44,14 +44,14 @@ export class SipComponent {
   buymethod() {
     this.loading = true;
 
-    this.http
-      .post(
-        `http://34.234.150.41:5151/transactions/updateportfolio?username=${this.loginService.getLoggedInUser()}&mutualFundsId=${this.id}&price=${this.amount}&unit=${this.unit}`,{},
-        { responseType: 'text' }
-      )
-      .subscribe(
-        (data) => {
-          console.log(this.loginService.getLoggedInUser(), data);
+    // this.http
+    //   .post(
+    //     `http://34.234.150.41:5151/transactions/updateportfolio?username=${this.loginService.getLoggedInUser()}&mutualFundsId=${this.id}&price=${this.amount}&unit=${this.unit}`,{},
+    //     { responseType: 'text' }
+    //   )
+    //   .subscribe(
+    //     (data) => {
+    //       console.log(this.loginService.getLoggedInUser(), data);
 
           this.http
             .post(
@@ -62,18 +62,19 @@ export class SipComponent {
               console.log(res);
             });
 
-          this.loading = false;
+            this.loading = false;
           this.success = true;
+
           setTimeout(() => {
             this.success = false;
             document.getElementById('modalclose')?.click();
             this.router.navigate(['dashboard']);
           }, 2000);
-        },
-        (err) => {
+        // },
+        (err: any) => {
           console.log(err);
           this.loading = false;
         }
-      );
+      // );
   }
 }

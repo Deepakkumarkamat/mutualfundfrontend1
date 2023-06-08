@@ -14,6 +14,8 @@
 
        [routerLink]="'allfundsdetail/' +fund.schemaId"
       >
+      <img [src]="'https://assets-netstorage.groww.in/mf-assets/logos/'+lower(fund.fundHouse)+'_groww.png'" style="width: 32px;
+        height: 31px;" >
         {{ fund.schemaName }}
       </button>
 

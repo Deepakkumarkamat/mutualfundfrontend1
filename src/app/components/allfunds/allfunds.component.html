@@ -10,7 +10,7 @@
             class="card cardform"
             routerLink="allfundsdetail/{{ detail.schemaId }}"
           >
-            <img src="assets\icici.webp" style="width: 32px;
+            <img [src]="'https://assets-netstorage.groww.in/mf-assets/logos/'+lower(detail.fundHouse)+'_groww.png'" style="width: 32px;
             height: 31px;" alt="" />
 
             <p class="fund">{{ detail.fundHouse }}</p>
@@ -30,7 +30,7 @@
             class="card cardform"
             [routerLink]="'allfundsdetail/' + detail.schemaId"
           >
-            <img src="assets\icici.webp" style="width: 32px;
+            <img [src]="'https://assets-netstorage.groww.in/mf-assets/logos/'+lower(detail.fundHouse)+'_groww.png'" style="width: 32px;
             height: 31px;" alt="" />
             <p class="fund">{{ detail.fundHouse }}</p>
             <p>{{ detail.delta }}%</p>

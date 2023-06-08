@@ -9,33 +9,28 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./forgotpassword.component.css'],
 })
 export class ForgotpasswordComponent {
-  otpForm!: FormGroup;
-  otp: boolean = false;
   sentSuccess: boolean = true;
-  // email=''
+   email=''
   submitted:boolean=false;
   forgotForm!: FormGroup;
   constructor(
-    private router: Router,
-    private formbuilder: FormBuilder,
-    private loginservice: LoginService
+    private router: Router,  private formbuilder: FormBuilder,    private loginservice: LoginService
   ) {}
 
   ngOnInit() {
     this.forgotForm = this.formbuilder.group({
       email: ['', Validators.required],
     });
-    // this.otpForm = this.formbuilder.group({
-    //   email:['',Validators.required],
-    //   otp:['',Validators.required]
 
-    // })
-    // const data = this.otpForm.value
-
-    // this.loginservice.sentEmail(data.email)
   }
-  senOtp() {
+  get form() {
+    return this.forgotForm.controls;
+  }  senOtp() {
     this.submitted = true;
+    if(this.forgotForm.invalid){
+      return
+    }
+
     const data = this.forgotForm.value;
     const userName = data.email;
     console.log(data);
@@ -44,19 +39,10 @@ export class ForgotpasswordComponent {
 
     });
 
-    // this.otp = true;
-    // if(this.otpForm.invalid){
-    //   return;
-    // }
-    // const email = this.otpForm.value
+
     this.router.navigate(['/update', userName]);
   }
 
-  // showUpdate() {
 
-  // }
 
-  get form() {
-    return this.otpForm.controls;
-  }
 }
