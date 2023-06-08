@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 
-<div *ngIf="portfolio.lenght == 0 || portfolio ===undefined" class="container-fluid-1">
+<div class="container-fluid-1" *ngIf="this.portfolio.length==0">
   <div
     data-aos="fade-left"
     data-aos-offset="200"
@@ -37,48 +37,6 @@
     ></ng-lottie>
   </div>
 
-  <div
-    class="d-flex flex-row-reverse justify-content-between"
-    style="width: 100%; padding-inline: 2rem"
-  >
-    <img
-      data-aos="fade-left"
-      data-aos-offset="200"
-      data-aos-delay="50"
-      data-aos-duration="1000"
-      data-aos-easing="ease-in-out"
-      src="assets\growth.gif"
-      class="img-fluid rounded float-end"
-      alt=""
-      style="
-        width: 50%;
-        mix-blend-mode: hard-light;
-        margin-bottom: 10px;
-        margin-top: 10px;
-      "
-    />
-
-    <div
-      data-aos="fade-right"
-      data-aos-offset="200"
-      data-aos-delay="50"
-      data-aos-duration="1000"
-      data-aos-easing="ease-in-out"
-      class="rounded float-start mb-5 d-flex justify-content-center align-items-center"
-    >
-      <h1
-        style="
-          font-size: 4.5rem;
-          font-family: 'Noto Sans', sans-serif;
-          text-shadow: #ccc 3px 3px 3px;
-        "
-      >
-        Didn't Invest Yet?<br />
-
-        Invest Now!
-      </h1>
-    </div>
-  </div>
 </div>
 
 <div class="pt-3" *ngIf="this.portfolio.length!==0">
@@ -105,23 +63,23 @@
             <tbody>
               <tr *ngFor="let obj of portfolio" class="zoom">
                 <td data-label="Job Title">
-                  <img alt="..." class="avatar avatar-sm rounded-circle me-2" />
+                  <img [src]="'https://assets-netstorage.groww.in/mf-assets/logos/'+lower(obj.funds?.schemaName)+'_groww.png'" style="width: 31px; height: 31px;"/>
                   <span class="text-heading font-semibold">
                     {{ obj.funds?.schemaName }}
                   </span>
                 </td>
-                <td data-label="Email">
+                <td data-label="fundHouse">
                   <span>{{ obj.funds?.fundHouse }}</span>
                 </td>
-                <td data-label="Phone">
+                <td data-label="Unit">
                   <span class="text-current">{{ obj.unit }}</span>
                 </td>
-                <td data-label="Lead Score">
-                  <span class="text-current">{{ obj.price }}</span>
+                <td data-label="CurrentPrice">
+                  <span class="text-current">{{ obj.funds?.currentPrice }}</span>
                 </td>
-                <td data-label="Company">
+                <td data-label="total">
                   <span class="badge bg-soft-success text-success">{{
-                    obj.price * obj.unit
+                    (obj.funds?.currentPrice * obj.unit).toFixed(3)
                   }}</span>
                 </td>
 

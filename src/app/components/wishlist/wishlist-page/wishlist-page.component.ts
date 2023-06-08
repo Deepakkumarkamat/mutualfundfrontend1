@@ -1,7 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AnimationItem } from 'lottie-web';
 import { AnimationOptions } from 'ngx-lottie';
+import { AllfundService } from 'src/app/services/allfund.service';
 import { ApiService } from 'src/app/services/api.service';
 import { LoginService } from 'src/app/services/login.service';
 import { WalletService } from 'src/app/services/wallet.service';
@@ -19,11 +21,19 @@ export class WishlistPageComponent {
 
  data:any;
  userId:number|any
+ wishList:any[]=[]
+ allfundData: any | [];
  animationCreated(animationCreated:AnimationItem){
   console.log('animation crated')
  }
   // wishList:any[]=[]
-  constructor(private loginservice:LoginService, private _wishlistItem:WishlistpageService,private route:ActivatedRoute,private api:ApiService,private walletService:WalletService){}
+  constructor(private loginservice:LoginService,
+    private wishlistService:WishlistpageService,
+    private route:ActivatedRoute,
+    private api:ApiService,
+    private walletService:WalletService,
+    private http:HttpClient,
+    private allfunds:AllfundService){}
   // ngOnInit(){
   //   this.wishList = this._wishlistItem.mutual;
   //   console.log(this.wishList)
@@ -32,15 +42,45 @@ export class WishlistPageComponent {
     return this.loginservice.getLoggedInUser();
   }
   ngOnInit(){
+    this.data = this.route.snapshot.paramMap.get('id')
     this.walletService.finduserid(this.getCurrentUser()).subscribe((response:any)=>{
       console.log(response)
       this.userId =response
       console.log(this.userId)
+
+
+      this.allfunds.getMutualFunds().subscribe((res) => {
+        console.log(res);
+
+        this.allfundData = res;
+
+      this.wishlistService.viewWishList(this.userId).subscribe((res:any)=>{
+        this.wishList= res
+        console.log(this.wishList)
+      })
     })
-    this.api.detailById(Number(this.route.snapshot.paramMap.get('id'))).subscribe((data)=>{
-      this.data=data
+  })
+
+
+
+    // this.api.detailById(Number(this.route.snapshot.paramMap.get('id'))).subscribe((data)=>{
+    //   this.data=data
+    // })
+    // console.log('data',this.data)
+  }
+
+
+  removeWishList(customerId:number,mutualfundId:number){
+    const headers = {'Content-Type':'application/text'}
+    return this.http.post(`http://34.234.150.41:5152/wishlist/remove?customerId=${customerId}&mutualfundId=${mutualfundId}`,{},{headers:headers,responseType:'text'}).subscribe((res:any)=>{
+      alert(res)
+      console.log(res)
     })
-    console.log('data',this.data)
+  }
+
+
+  lower(str:string){
+    return str?.split(' ')[0].toLowerCase()
   }
 
 

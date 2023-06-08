@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { WishlistpageService } from 'src/app/services/wishlistpage.service';
+import { LoginService } from 'src/app/services/login.service';
+import { WalletService } from 'src/app/services/wallet.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-allfundsdetail',
@@ -17,10 +21,16 @@ export class AllfundsdetailComponent {
   upi:boolean=false;
   inputAmount=''
   name:any;
+  userId:number|any;
 
   chartOptions ={}
-  constructor(private apii: ApiService, private router:Router, private route: ActivatedRoute) {}
+  getCurrentUser() {
+    return this.loginservice.getLoggedInUser();
+  }
+  constructor(private walletService:WalletService, private apii: ApiService, private router:Router, private route: ActivatedRoute,private wishlistService:WishlistpageService,private loginservice:LoginService) {}
   ngOnInit() {
+
+
     this.id = this.route.snapshot.paramMap.get('id');
     this.apii.detailById(this.id).subscribe((res) => {
       this.fundDetail = res[0];
@@ -108,4 +118,32 @@ export class AllfundsdetailComponent {
   // goToSip(){
   //   this.router.navigate(["/sip"])
   // }
+
+  //forWishList...
+  add(){
+    this.walletService.finduserid(this.getCurrentUser()).subscribe((response:any)=>{
+      console.log(response)
+      this.userId =response
+
+      this.wishlistService.addToWishList(this.userId,this.id).subscribe((res:any)=>{
+        console.log(res)
+
+        Swal.fire({
+          title:res==='Data added successfully'?'Fund added successfully to wishlist!':'Already exists in wishlist' ,
+          icon:res==-''?'warning':'success',
+          showConfirmButton:true,
+          confirmButtonText:'ok',
+          confirmButtonColor:'teal'
+        }).then((result)=>{
+          if(result.value){
+
+          }
+        })
+      })
+    })
+
+  }
+  lower(str:string){
+    return str.split(' ')[0].toLowerCase()
+  }
 }

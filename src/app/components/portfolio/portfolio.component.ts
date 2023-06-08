@@ -81,7 +81,9 @@ export class PortfolioComponent {
 
   getFundDetails(id: any) {
     this.apiService.detailById(id).subscribe((res) => {
+      console.log(res)
       return res;
+
     });
   }
   sellMethod(fundId: number, price: number, unit: number) {
@@ -107,5 +109,8 @@ export class PortfolioComponent {
         });
         // alert(res);
       });
+  }
+  lower(str:string){
+    return str?.split(' ')[0].toLowerCase()
   }
 }

@@ -1,20 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-
-import { MutualFundService } from 'src/app/services/mutual-fund.service';
-
 import { ApiService } from 'src/app/services/api.service';
-
 import { Router } from '@angular/router';
-
 import { AnimationOptions } from 'ngx-lottie';
-
 import { AnimationItem } from 'lottie-web';
-
 import { AllfundService } from 'src/app/services/allfund.service';
 import { ElementRef } from '@angular/core';
 import { WalletService } from 'src/app/services/wallet.service';
 import { LoginService } from 'src/app/services/login.service';
-import { SignUpComponent } from '../sign-up/sign-up.component';
+
 
 
 @Component({
@@ -98,7 +91,7 @@ export class DashboardHomeComponent implements OnInit {
 
       console.log(this.detailList);
 
-      this.loadMutualFunds();
+      // this.loadMutualFunds();
     });
 
     this.api.getBottomDetail().subscribe((res) => {
@@ -151,5 +144,7 @@ export class DashboardHomeComponent implements OnInit {
     });
   }
 
-
+  lower(str:string){
+    return str.split(' ')[0].toLowerCase()
+  }
 }
