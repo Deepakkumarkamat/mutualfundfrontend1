@@ -49,17 +49,27 @@ export class WishlistPageComponent {
       console.log(this.userId)
 
 
-      this.allfunds.getMutualFunds().subscribe((res) => {
-        console.log(res);
+      // this.allfunds.getMutualFunds().subscribe((res) => {
+      //   console.log(res);
 
-        this.allfundData = res;
+      //   this.allfundData = res;
 
       this.wishlistService.viewWishList(this.userId).subscribe((res:any)=>{
-        this.wishList= res
+        // res
+        // console.log(res)
+         res.map((wish:any)=>{
+          let newWish
+          this.api.detailById(wish.mutualfundId).subscribe((response)=>{
+            newWish={...wish,fundData:response[0]}
+            console.log(this.wishList)
+            this.wishList.push(newWish)
+          })
+
+        })
         console.log(this.wishList)
       })
     })
-  })
+  // })
 
 
 

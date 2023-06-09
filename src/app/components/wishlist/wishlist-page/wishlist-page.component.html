@@ -46,10 +46,10 @@
               <tr>
                 <th scope="col">Fund Name</th>
                 <th scope="col">Provider</th>
-                <th scope="col">Unit</th>
-                <th scope="col">Unit Price</th>
-                <th scope="col">Total</th>
-                <th scope="col">Remove</th>
+                <th scope="col">Price</th>
+                <th scope="col">Delta</th>
+                <!-- <th scope="col">Total</th>
+                <th scope="col">Remove</th> -->
                 <!-- <th scope="col">Date</th> -->
               </tr>
             </thead>
@@ -57,30 +57,31 @@
               <tr *ngFor="let obj of wishList" class="zoom">
                 <td data-label="Job Title">
                   <img
+                  style="aspect-ratio: 4/5;width: 2rem;"
                     [src]="
                       'https://assets-netstorage.groww.in/mf-assets/logos/' +
-                      lower(obj.allfundData?.fundHouse) +
+                      lower(obj.fundData.fundHouse) +
                       '_groww.png'
                     "
                   />
                   <span class="text-heading font-semibold">
-                    {{ obj.allfundData?.schemaName }}
+                    {{ obj.fundData.schemaName }}
                   </span>
                 </td>
-                <td data-label="Email">
-                  <span>{{ obj.allfundData?.fundHouse }}</span>
+                <td data-label="fundHouse">
+                  <span>{{ obj.fundData?.fundHouse }}</span>
                 </td>
-                <td data-label="Phone">
-                  <span class="text-current">{{ obj.unit }}</span>
+                <td data-label="Price">
+                  <span class="text-current">{{ obj.fundData.currentPrice }}</span>
                 </td>
-                <td data-label="Lead Score">
-                  <span class="text-current">{{ obj.price }}</span>
+                <td data-label="Delts">
+                  <span class="text-current">{{ obj.fundData.delta }}</span>
                 </td>
-                <td data-label="Company">
+                <!-- <td data-label="Company">
                   <span class="badge bg-soft-success text-success">{{
                     obj.price * obj.unit
                   }}</span>
-                </td>
+                </td> -->
                 <td data-label="">
                   <button
                     class="btn"

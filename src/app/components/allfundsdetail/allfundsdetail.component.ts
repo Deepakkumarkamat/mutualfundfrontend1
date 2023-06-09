@@ -136,6 +136,7 @@ export class AllfundsdetailComponent {
           confirmButtonColor:'teal'
         }).then((result)=>{
           if(result.value){
+            this.router.navigate(['/dashboard/allfundsdetail/wishlist/wishlist-page'])
 
           }
         })
