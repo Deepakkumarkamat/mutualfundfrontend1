@@ -145,6 +145,6 @@ export class AllfundsdetailComponent {
 
   }
   lower(str:string){
-    return str.split(' ')[0].toLowerCase()
+    return str?.split(' ')[0].toLowerCase()
   }
 }

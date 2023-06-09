@@ -26,7 +26,7 @@ export class AllfundsComponent {
   }
 
   lower(str:string){
-    return str.split(' ')[0].toLowerCase()
+    return str?.split(' ')[0].toLowerCase()
   }
   fetchById(schemaId: number): void {
     this.api.detailById(schemaId).subscribe((data) => {
