@@ -98,10 +98,14 @@ export class PortfolioComponent {
         // alert(res)
         console.log(res);
         Swal.fire({
-          title: res === 'Data inserted successfully' ? 'Successfully Sold!' : res,
+          title: res === 'Data inserted successfully' ? 'Are you sure!' : res,
           icon: res === 'Not enough units' ? 'warning' : 'success',
+          // text:'You want to sell!',
           showConfirmButton: true,
-          confirmButtonText: 'ok',
+          // showCancelButton:true,
+          confirmButtonText: 'Ok',
+          // cancelButtonText:'Cancel',
+          // cancelButtonColor:'red',
           confirmButtonColor: 'teal',
         }).then((result) => {
           if (result.value) {

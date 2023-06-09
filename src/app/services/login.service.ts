@@ -88,7 +88,8 @@ export class LoginService {
   }
 
   sentEmail(email:string){
-    return this.http.get(`http://34.234.150.41:6161/customer/send?email=${email}`)
+    const headers = {'Content-Type':'application/json'}
+    return this.http.get(`http://34.234.150.41:6161/customer/send?email=${email}`,{headers:headers,responseType:'text'})
   }
 
   updatepassword(otp:number,user:UpdatePassword){
