@@ -45,7 +45,7 @@
             <tbody>
               <tr *ngFor="let obj of portfolio">
                 <td data-label="Job Title">
-                  <img alt="..." class="avatar avatar-sm rounded-circle me-2" />
+                  <img [src]="'https://assets-netstorage.groww.in/mf-assets/logos/'+lower(obj.funds?.schemaName)+'_groww.png'" style="width: 31px; height: 31px;"/>
                   <span class="text-heading font-semibold">
                     {{ obj.funds?.schemaName }}
                   </span>
@@ -54,10 +54,12 @@
                   <span>{{ obj.funds?.fundHouse }}</span>
                 </td>
                 <td data-label="Unit">
-                  <span class="text-current">{{ (obj.unit).toFixed(3) }}</span>
+                  <span class="text-current">{{ obj.unit.toFixed(3) }}</span>
                 </td>
                 <td data-label="CurrentPrice">
-                  <span class="text-current">{{ obj.funds?.currentPrice }}</span>
+                  <span class="text-current">{{
+                    obj.funds?.currentPrice
+                  }}</span>
                 </td>
                 <td data-label="total">
                   <span class="badge bg-soft-success text-success">{{
@@ -80,7 +82,12 @@
 
 <app-allfunds> </app-allfunds>
 <div class="d-md-flex ml-3">
-  <button type="button" class="btn" (click)="showAllMutualfund()" (click)="loadMutualFunds()">
+  <button
+    type="button"
+    class="btn"
+    (click)="showAllMutualfund()"
+    (click)="loadMutualFunds()"
+  >
     {{ showAllfund ? "Hide All" : "Show All" }}
   </button>
 </div>
@@ -99,14 +106,18 @@
         [routerLink]="'allfundsdetail/' + fund.schemaId"
         (click)="scrollElemet()"
       >
-      <img [src]="'https://assets-netstorage.groww.in/mf-assets/logos/'+lower(fund.fundHouse)+'_groww.png'" style="width: 32px;
-        height: 31px;" >
+        <img
+          [src]="
+            'https://assets-netstorage.groww.in/mf-assets/logos/' +
+            lower(fund.fundHouse) +
+            '_groww.png'
+          "
+          style="width: 32px; height: 31px"
+        />
         {{ fund.schemaName }}
-
       </button>
 
       <div class="details" [class.show]="true">
-
         <p><strong>Fund House:</strong> {{ fund.fundHouse }}</p>
 
         <p><strong>Category:</strong> {{ fund.schemaCategory }}</p>
@@ -130,5 +141,6 @@
     </li>
   </ul>
 </div>
+<app-footer></app-footer>
 <!-- </div> -->
 <!-- </div> -->

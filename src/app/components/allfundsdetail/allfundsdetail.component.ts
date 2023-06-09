@@ -121,6 +121,21 @@ export class AllfundsdetailComponent {
 
   //forWishList...
   add(){
+    if(!this.loginservice.isLoggedIn()){
+      Swal.fire({
+        title:"Please login",
+        // text:'Please login!',
+        icon:'warning',
+        showConfirmButton:true,
+        confirmButtonText:'Ok',
+        confirmButtonColor:'teal'
+      }).then((result)=>{
+        if(result.value){
+          this.router.navigate(['login'])
+        }
+      })
+
+    }
     this.walletService.finduserid(this.getCurrentUser()).subscribe((response:any)=>{
       console.log(response)
       this.userId =response
@@ -141,6 +156,8 @@ export class AllfundsdetailComponent {
           }
         })
       })
+    },(error)=>{
+      console.log(error)
     })
 
   }
