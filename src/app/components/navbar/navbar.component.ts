@@ -18,6 +18,7 @@ import Swal from 'sweetalert2';
 export class NavbarComponent {
   history:any;
   userId:any|any;
+  fullName:any;
   constructor(private loginservice: LoginService, private api:WalletService,private apii:ApiService,private router: Router) {}
   getCurrentUser() {
     return this.loginservice.getLoggedInUser();
@@ -58,6 +59,10 @@ this.api.walletHistory(this.userId).subscribe((data)=>{
     } else {
       document.getElementById('login')?.style.setProperty('display', 'none');
     }
+    this.loginservice.fullName(this.getCurrentUser()).subscribe((res:any)=>{
+      console.log(res)
+      this.fullName= res;
+    })
   }
 
   logout() {
@@ -95,6 +100,9 @@ this.api.walletHistory(this.userId).subscribe((data)=>{
   goTosignUp() {
     this.router.navigate(['register']);
   }
+  // userName(){
+
+  // }
 
 
 }

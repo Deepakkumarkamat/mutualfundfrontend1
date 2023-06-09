@@ -30,7 +30,7 @@ export class PortfolioComponent {
     private walletservice: WalletService,
     private allfunds: AllfundService,
     private http: HttpClient,
-    private router:Router
+    private router: Router
   ) {}
 
   getCurrentUser() {
@@ -51,7 +51,7 @@ export class PortfolioComponent {
           console.log(res);
 
           this.portfolio = res;
-         this.portfolio= this.portfolio.filter((data:any)=>(data.unit>0))
+          this.portfolio = this.portfolio.filter((data: any) => data.unit > 0);
 
           let allfundData: any | [];
 
@@ -75,9 +75,6 @@ export class PortfolioComponent {
           console.log('unit=' + this.portfolio.unit);
         });
       });
-
-
-
   }
 
   animationCreated(animationItem: AnimationItem): void {
@@ -86,13 +83,28 @@ export class PortfolioComponent {
 
   getFundDetails(id: any) {
     this.apiService.detailById(id).subscribe((res) => {
-      console.log(res)
+      console.log(res);
       return res;
-
     });
-
   }
   sellMethod(fundId: number, price: number, unit: number) {
+    // Swal.fire({
+    //   title:'Are you sure you wanna Sell!',
+    //   icon:'question',
+    //   showConfirmButton:true,
+    //   showCancelButton:true,
+    //   cancelButtonColor:'red',
+    //   cancelButtonText:'Cancel',
+    //   confirmButtonText:'Ok',
+    //   confirmButtonColor:'teal',
+    // }).then((result)=>{
+    //   if(result.value){
+    //     if(result.isConfirmed){
+    //       return
+    //       }
+    //   }
+
+    // })
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     this.http
       .post(
@@ -106,22 +118,45 @@ export class PortfolioComponent {
         Swal.fire({
           title: res === 'Data inserted successfully' ? 'You have sold!' : res,
           icon: res === 'Not enough units' ? 'warning' : 'success',
-          // text:'You want to sell!',
+
           showConfirmButton: true,
-          // showCancelButton:true,
+
           confirmButtonText: 'Ok',
-          // cancelButtonText:'Cancel',
-          // cancelButtonColor:'red',
+
           confirmButtonColor: 'teal',
         }).then((result) => {
           if (result.value) {
-            this.router.navigate(['/portfolio'])
+            this.router.navigate(['/portfolio']);
           }
         });
-        // alert(res);
       });
   }
-  lower(str:string){
-    return str?.split(' ')[0].toLowerCase()
+  lower(str: string) {
+    return str?.split(' ')[0].toLowerCase();
   }
+
+  sellMethod1(fundId: number, price: number, unit: number) {
+    Swal.fire({
+      title:'Are you sure you wanna Sell!',
+      icon:'question',
+      showConfirmButton:true,
+      showCancelButton:true,
+      cancelButtonColor:'red',
+      cancelButtonText:'Cancel',
+      confirmButtonText:'Ok',
+      confirmButtonColor:'teal',
+    }).then((result)=>{
+      if(result.value){
+        if(result.isConfirmed){
+          this.sellMethod(fundId, price, unit)
+          }
+          if(result.isDenied){
+            this.router.navigate(['/dashboard/portfolio'])
+          }
+      }
+
+    })
+
+  }
+
 }
