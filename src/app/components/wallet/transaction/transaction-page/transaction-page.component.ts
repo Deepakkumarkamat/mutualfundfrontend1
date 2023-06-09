@@ -36,13 +36,7 @@ ngOnInit(){
 
 
   }
-  // showTransaction(){
 
-  // }
-
-  // ngOnDistroy() {
-  //   this.show = false;
-  // }
 }
 
 

@@ -34,10 +34,7 @@ export class WishlistPageComponent {
     private walletService:WalletService,
     private http:HttpClient,
     private allfunds:AllfundService){}
-  // ngOnInit(){
-  //   this.wishList = this._wishlistItem.mutual;
-  //   console.log(this.wishList)
-  // }
+
   getCurrentUser() {
     return this.loginservice.getLoggedInUser();
   }
@@ -49,14 +46,10 @@ export class WishlistPageComponent {
       console.log(this.userId)
 
 
-      // this.allfunds.getMutualFunds().subscribe((res) => {
-      //   console.log(res);
 
-      //   this.allfundData = res;
 
       this.wishlistService.viewWishList(this.userId).subscribe((res:any)=>{
-        // res
-        // console.log(res)
+
          res.map((wish:any)=>{
           let newWish
           this.api.detailById(wish.mutualfundId).subscribe((response)=>{
@@ -73,10 +66,7 @@ export class WishlistPageComponent {
 
 
 
-    // this.api.detailById(Number(this.route.snapshot.paramMap.get('id'))).subscribe((data)=>{
-    //   this.data=data
-    // })
-    // console.log('data',this.data)
+
   }
 
 

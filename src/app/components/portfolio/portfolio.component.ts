@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { AnimationItem } from 'lottie-web';
 import { AnimationOptions } from 'ngx-lottie';
@@ -28,7 +29,8 @@ export class PortfolioComponent {
     private loginservice: LoginService,
     private walletservice: WalletService,
     private allfunds: AllfundService,
-    private http: HttpClient
+    private http: HttpClient,
+    private router:Router
   ) {}
 
   getCurrentUser() {
@@ -73,6 +75,9 @@ export class PortfolioComponent {
           console.log('unit=' + this.portfolio.unit);
         });
       });
+
+
+
   }
 
   animationCreated(animationItem: AnimationItem): void {
@@ -85,6 +90,7 @@ export class PortfolioComponent {
       return res;
 
     });
+
   }
   sellMethod(fundId: number, price: number, unit: number) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
@@ -98,7 +104,7 @@ export class PortfolioComponent {
         // alert(res)
         console.log(res);
         Swal.fire({
-          title: res === 'Data inserted successfully' ? 'Are you sure!' : res,
+          title: res === 'Data inserted successfully' ? 'You have sold!' : res,
           icon: res === 'Not enough units' ? 'warning' : 'success',
           // text:'You want to sell!',
           showConfirmButton: true,
@@ -109,6 +115,7 @@ export class PortfolioComponent {
           confirmButtonColor: 'teal',
         }).then((result) => {
           if (result.value) {
+            this.router.navigate(['/portfolio'])
           }
         });
         // alert(res);
