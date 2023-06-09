@@ -51,7 +51,7 @@ const routes: Routes = [
   {path:'dashboard/allfundsdetail/wishlist/wishlist-page',component:WishlistPageComponent,canActivate:[AuthGuard]},
   {path:"dashboard/allfundsdetail/:schemaId",component:AllfundsdetailComponent},
   {path:'paymentoption',component:PaymentoptionComponent},
-  {path:'wishlist',component:WishlistPageComponent},
+  {path:'wishlist',component:WishlistPageComponent,canActivate:[AuthGuard]},
   {path:'register/account',component:RegisterComponent},
   {path:'thankyou',component:ThankyouComponent},
    {path:'sip',component:SipComponent},
