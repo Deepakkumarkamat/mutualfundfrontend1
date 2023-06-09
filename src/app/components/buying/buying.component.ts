@@ -37,7 +37,7 @@ export class BuyingComponent {
     // this.http.post(`http://34.234.150.41:5151/transactions/updateportfolio?username=${this.loginService.getLoggedInUser()}&mutualFundsId=${this.id}&price=${this.amount}&unit=1`, {},{responseType:'text'}).subscribe((data) => {
     //   console.log(this.loginService.getLoggedInUser(),data)
 
-      this.http.post(`http://34.234.150.41:5151/transactionhistory/insert?username=${this.loginService.getLoggedInUser()}&mutualFundsId=${this.id}&type=buy&price=${this.fundDetails.currentPrice}&unit=1`,{}).subscribe((res)=>
+      this.http.post(`http://34.234.150.41:5151/transactionhistory/insert?username=${this.loginService.getLoggedInUser()}&mutualFundsId=${this.id}&type=buy&price=${this.fundDetails.currentPrice}&unit=${this.unit}`,{}).subscribe((res)=>
       {console.log(res)}
     )
 
