@@ -97,4 +97,9 @@ export class LoginService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.patch(url,user,{headers:headers,responseType:'text'})
       }
+
+      fullName(email:string){
+        const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+        return this.http.get(`http://34.234.150.41:6161/customer/findname?email=${email}`,{headers:headers,responseType:'text'})
+      }
 }

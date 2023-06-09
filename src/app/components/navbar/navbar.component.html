@@ -50,8 +50,12 @@
               >
                 Notification
               </div>
-              <div style="background-color:  rgba(177, 44, 44, 0.4);
-              backdrop-filter: blur(4px);">
+              <div
+                style="
+                  background-color: rgba(177, 44, 44, 0.4);
+                  backdrop-filter: blur(4px);
+                "
+              >
                 <div class="notification-list">
                   <div class="list-group">
                     <a
@@ -73,7 +77,9 @@
                             {{ data.description }}</span
                           >
 
-                          <div class="notification-date">{{ data.transactionDate.substring(0, 10) }}</div>
+                          <div class="notification-date">
+                            {{ data.transactionDate.substring(0, 10) }}
+                          </div>
                         </div>
                       </div>
                     </a>
@@ -191,10 +197,10 @@
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
                   <a routerLink="/wishlist" class="connection-item"
                     ><img
-                    style="filter: opacity(0.5) drop-shadow(0 0 0 teal)"
-                    src="https://img.icons8.com/?size=512&id=15893&format=png"
-                    alt=""
-                  />
+                      style="filter: opacity(0.5) drop-shadow(0 0 0 teal)"
+                      src="https://img.icons8.com/?size=512&id=15893&format=png"
+                      alt=""
+                    />
                     <span>WishList Investment</span></a
                   >
                 </div>
@@ -278,10 +284,12 @@
           >
             <div class="nav-user-info">
               <h5 class="mb-0 text-white nav-user-name">
-                {{ getCurrentUser() }}
+                {{ this.fullName }}
+             <small>{{ getCurrentUser() }}</small>
               </h5>
 
-              <span class="status"></span><span class="ml-2">Available</span>
+
+
             </div>
 
             <a class="dropdown-item"><i class="fas fa-user mr-2"></i>Account</a>
