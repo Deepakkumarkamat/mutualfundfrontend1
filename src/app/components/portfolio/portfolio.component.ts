@@ -38,6 +38,9 @@ export class PortfolioComponent {
   }
 
   ngOnInit() {
+    this.viewPortfolio();
+  }
+  viewPortfolio() {
     this.walletservice
       .finduserid(this.getCurrentUser())
       .subscribe((response: any) => {
@@ -73,6 +76,11 @@ export class PortfolioComponent {
           });
 
           console.log('unit=' + this.portfolio.unit);
+
+          this.apiService.detailById(res.mutualFundsId).subscribe((res) => {
+            console.log(res);
+            return res;
+          });
         });
       });
   }
@@ -81,30 +89,10 @@ export class PortfolioComponent {
     console.log(animationItem);
   }
 
-  getFundDetails(id: any) {
-    this.apiService.detailById(id).subscribe((res) => {
-      console.log(res);
-      return res;
-    });
-  }
-  sellMethod(fundId: number, price: number, unit: number) {
-    // Swal.fire({
-    //   title:'Are you sure you wanna Sell!',
-    //   icon:'question',
-    //   showConfirmButton:true,
-    //   showCancelButton:true,
-    //   cancelButtonColor:'red',
-    //   cancelButtonText:'Cancel',
-    //   confirmButtonText:'Ok',
-    //   confirmButtonColor:'teal',
-    // }).then((result)=>{
-    //   if(result.value){
-    //     if(result.isConfirmed){
-    //       return
-    //       }
-    //   }
+  // getFundDetails(id: any) {
 
-    // })
+  // }
+  sellMethod(fundId: number, price: number, unit: number) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     this.http
       .post(
@@ -126,7 +114,9 @@ export class PortfolioComponent {
           confirmButtonColor: 'teal',
         }).then((result) => {
           if (result.value) {
-            this.router.navigate(['/portfolio']);
+            // this.router.navigate(['/portfolio']);
+            // this.portfolio = [];
+            this.viewPortfolio();
           }
         });
       });
@@ -137,26 +127,23 @@ export class PortfolioComponent {
 
   sellMethod1(fundId: number, price: number, unit: number) {
     Swal.fire({
-      title:'Are you sure you wanna Sell!',
-      icon:'question',
-      showConfirmButton:true,
-      showCancelButton:true,
-      cancelButtonColor:'red',
-      cancelButtonText:'Cancel',
-      confirmButtonText:'Ok',
-      confirmButtonColor:'teal',
-    }).then((result)=>{
-      if(result.value){
-        if(result.isConfirmed){
-          this.sellMethod(fundId, price, unit)
-          }
-          if(result.isDenied){
-            this.router.navigate(['/dashboard/portfolio'])
-          }
+      title: 'Are you sure you wanna Sell!',
+      icon: 'question',
+      showConfirmButton: true,
+      showCancelButton: true,
+      cancelButtonColor: 'red',
+      cancelButtonText: 'Cancel',
+      confirmButtonText: 'Ok',
+      confirmButtonColor: 'teal',
+    }).then((result) => {
+      if (result.value) {
+        if (result.isConfirmed) {
+          this.sellMethod(fundId, price, unit);
+        }
+        if (result.isDenied) {
+          this.router.navigate(['/dashboard/portfolio']);
+        }
       }
-
-    })
-
+    });
   }
-
 }

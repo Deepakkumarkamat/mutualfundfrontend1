@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { LoginService } from 'src/app/services/login.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-sip',
@@ -40,8 +41,10 @@ export class SipComponent {
     this.unit = (
       Number(this.amount) / Number(this.fundDetails.currentPrice)
     ).toFixed(3);
+    this.success = true;
   }
   buymethod() {
+    this.success = false;
     this.loading = true;
 
     // this.http
@@ -52,14 +55,26 @@ export class SipComponent {
     //   .subscribe(
     //     (data) => {
     //       console.log(this.loginService.getLoggedInUser(), data);
-
+    const headers = { 'Content-Type': 'application/text' };
           this.http
             .post(
-              `http://34.234.150.41:5151/transactionhistory/insert?username=${this.loginService.getLoggedInUser()}&mutualFundsId=${this.id}&type=buy&price=${this.fundDetails.currentPrice}&unit=${this.unit}`,
-              {}
+              `http://34.234.150.41:5151/transactionhistory/insert?username=${this.loginService.getLoggedInUser()}&mutualFundsId=${this.id}&type=buy&price=${this.amount}&unit=${this.unit}`,
+              {},{ headers: headers, responseType: 'text' }
             )
             .subscribe((res) => {
+              Swal.fire({
+                title:res==='Data inserted successfully'?'Succesfully Buy!':res,
+                showConfirmButton:true,
+                confirmButtonText:'ok',
+                confirmButtonColor:'teal'
+
+              }).then((result)=>{
+                if(result.value){
+
+                }
+              })
               console.log(res);
+
             });
 
             this.loading = false;
@@ -69,7 +84,7 @@ export class SipComponent {
             this.success = false;
             document.getElementById('modalclose')?.click();
             this.router.navigate(['dashboard']);
-          }, 2000);
+          }, 20);
         // },
         (err: any) => {
           console.log(err);
