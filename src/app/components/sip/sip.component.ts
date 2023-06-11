@@ -59,7 +59,7 @@ export class SipComponent {
     const headers = { 'Content-Type': 'application/text' };
           this.http
             .post(
-              `http://34.234.150.41:5151/transactionhistory/insert?username=${this.loginService.getLoggedInUser()}&mutualFundsId=${this.id}&type=buy&price=${this.amount}&unit=${this.unit}`,
+              `http://34.234.150.41:5151/transactionhistory/insert?username=${this.loginService.getLoggedInUser()}&mutualFundsId=${this.id}&type=buy&price=${this.fundDetails.currentPrice}&unit=${this.unit}`,
               {},{ headers: headers, responseType: 'text' }
             )
             .subscribe((res) => {

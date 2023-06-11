@@ -48,7 +48,7 @@ export class BuyingComponent {
       .post(
         `http://34.234.150.41:5151/transactionhistory/insert?username=${this.loginService.getLoggedInUser()}&mutualFundsId=${
           this.id
-        }&type=buy&price=${this.amount}&unit=${this.unit}`,
+        }&type=buy&price=${this.fundDetails.currentPrice}&unit=${this.unit}`,
         {},
         { headers: headers, responseType: 'text' }
       )

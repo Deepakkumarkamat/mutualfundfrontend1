@@ -58,13 +58,13 @@ export class WithdrawPageComponent {
           // window.location.reload();
 
           // transactionHistory() {
-          this.api
-            .addTransactionHistory(this.userId, 'withdraw', this.balancewithdraw)
-            .subscribe((res) => {
-              // console.log(this.transaction)
-              // alert(res);
-              this.balancewithdraw=''
-            });
+          // this.api
+          //   .addTransactionHistory(this.userId, 'withdraw', this.balancewithdraw)
+          //   .subscribe((res) => {
+          //     console.log(this.transaction)
+          //     alert(res);
+          //     this.balancewithdraw=''
+          //   });
           // }
         });
     });

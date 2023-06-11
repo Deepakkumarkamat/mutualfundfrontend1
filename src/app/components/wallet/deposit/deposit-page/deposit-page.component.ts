@@ -70,14 +70,14 @@ export class DepositPageComponent {
        })
       // window.location.reload();
 
-      this.api
-      .addTransactionHistory(this.userId, 'deposit', this.add_balance)
-      .subscribe((res) => {
-        // console.log(this.transaction)
-        console.log(res)
-        this.add_balance=''
-        // alert(res);
-      });
+      // this.api
+      // .addTransactionHistory(this.userId, 'deposit', this.add_balance)
+      // .subscribe((res) => {
+      //   console.log(this.transaction)
+      //   console.log(res)
+      //   this.add_balance=''
+      //   alert(res);
+      // });
     });
   });
   }
