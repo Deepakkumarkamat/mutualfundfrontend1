@@ -36,6 +36,7 @@ export class SipComponent {
       this.fundDetails = data[0];
       console.log(this.fundDetails);
     });
+
   }
   continue() {
     this.unit = (
@@ -70,6 +71,7 @@ export class SipComponent {
 
               }).then((result)=>{
                 if(result.value){
+                  this.router.navigate(['/dashboard']);
 
                 }
               })
@@ -83,7 +85,7 @@ export class SipComponent {
           setTimeout(() => {
             this.success = false;
             document.getElementById('modalclose')?.click();
-            this.router.navigate(['dashboard']);
+            // this.router.navigate(['dashboard']);
           }, 20);
         // },
         (err: any) => {
