@@ -39,7 +39,7 @@ export class BuyingComponent {
   }
   buymethod() {
     this.loading = true;
-    this.success=false
+    this.success = false;
 
     // this.http.post(`http://34.234.150.41:5151/transactions/updateportfolio?username=${this.loginService.getLoggedInUser()}&mutualFundsId=${this.id}&price=${this.amount}&unit=1`, {},{responseType:'text'}).subscribe((data) => {
     //   console.log(this.loginService.getLoggedInUser(),data)
@@ -49,29 +49,30 @@ export class BuyingComponent {
         `http://34.234.150.41:5151/transactionhistory/insert?username=${this.loginService.getLoggedInUser()}&mutualFundsId=${
           this.id
         }&type=buy&price=${this.amount}&unit=${this.unit}`,
-        {},{ headers: headers, responseType: 'text' }
+        {},
+        { headers: headers, responseType: 'text' }
       )
       .subscribe((res) => {
         console.log(res);
         Swal.fire({
-          title:res==='Data inserted successfully'?'Succesfully Buy!':res,
-          showConfirmButton:true,
-          confirmButtonText:'ok',
-          confirmButtonColor:'teal'
-
-        }).then((result)=>{
-          if(result.value){
-
+          title:
+            res === 'Data inserted successfully' ? 'Succesfully Buy!' : res,
+          showConfirmButton: true,
+          confirmButtonText: 'ok',
+          confirmButtonColor: 'teal',
+        }).then((result) => {
+          if (result.value) {
+            this.router.navigate(['dashboard']);
           }
-        })
+        });
       });
 
     this.loading = false;
- this.success=true
+    this.success = true;
     setTimeout(() => {
       this.success = false;
       document.getElementById('modalclose')?.click();
-      this.router.navigate(['dashboard']);
+      // this.router.navigate(['dashboard']);
     }, 20);
 
     // },
