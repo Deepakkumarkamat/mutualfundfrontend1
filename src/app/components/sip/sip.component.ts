@@ -39,9 +39,9 @@ export class SipComponent {
 
   }
   continue() {
-    this.unit = (
+    this.unit =
       Number(this.amount) / Number(this.fundDetails.currentPrice)
-    ).toFixed(3);
+    // ).toFixed(3);
     this.success = true;
   }
   buymethod() {

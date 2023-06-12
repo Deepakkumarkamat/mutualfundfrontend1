@@ -78,6 +78,7 @@ export class DepositPageComponent {
       //   this.add_balance=''
       //   alert(res);
       // });
+      this.add_balance=''
     });
   });
   }
