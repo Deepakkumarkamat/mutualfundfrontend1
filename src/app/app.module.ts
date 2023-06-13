@@ -42,10 +42,14 @@ import { PaymentoptionComponent } from './components/paymentoption/paymentoption
 import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
 import { VarifyotpComponent } from './components/varifyotp/varifyotp.component';
 import { SendOtpComponent } from './components/send-otp/send-otp.component';
+import { NgxUiLoaderConfig, NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
 
 
 var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
 
+// const loadingConfig : NgxUiLoaderConfig ={
+// httpTimeout:3000,
+// };
 export function playerFactory() {
   return player;
 }
@@ -91,7 +95,16 @@ export function playerFactory() {
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    LottieModule.forRoot({ player: playerFactory })
+    LottieModule.forRoot({ player: playerFactory }),
+    NgxUiLoaderModule,
+    // NgxUiLoaderHttpModule.forRoot({
+    //   showForeground:true,
+    //   minTime:300,
+    //   excludeRegexp:[
+    //     '/mutualfund/search'
+    //   ]
+    // })
+
   ],
   providers: [WishlistpageService,
   WalletService,ApiService],

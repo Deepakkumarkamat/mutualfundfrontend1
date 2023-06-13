@@ -3,6 +3,7 @@ import { LoginService } from 'src/app/services/login.service';
 import { Router } from '@angular/router';
 import { SharedService } from 'src/app/services/shared.service';
 import Swal from 'sweetalert2';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,11 @@ export class LoginComponent {
     password:''
   }
 
-  constructor(private loginService:LoginService,private router:Router, private sharedservice:SharedService){ }
+  constructor(private loginService:LoginService,
+    private router:Router,
+     private sharedservice:SharedService,
+     private ngxService: NgxUiLoaderService
+     ){ }
 
 
   ngOnInit(): void {
@@ -43,6 +48,7 @@ newusername(){
 
   onSubmit(){
     // console.log("Form is Submitted!!")
+    this.ngxService.start()
 
     if((this.credentials.username!='' && this.credentials.password!='')&& (this.credentials.username!=null && this.credentials.password!=null)){
       console.log("We have to submit the form to server!!");
@@ -61,24 +67,26 @@ newusername(){
 
 
           this.loginService.loginUser(response.token)
-          Swal.fire({
-            icon:'success',
-            title:'Login Successful',
-            text:'You have Successfully logged in!',
-            showCancelButton:false,
-            confirmButtonText:'Ok',
-            confirmButtonColor:'#008080'
-          }).then((result)=>{
-            if (result.value) {
+          this.ngxService.stop()
+          // Swal.fire({
+          //   icon:'success',
+          //   title:'Login Successful',
+          //   text:'You have Successfully logged in!',
+          //   showCancelButton:false,
+          //   confirmButtonText:'Ok',
+          //   confirmButtonColor:'#008080'
+          // }).then((result)=>{
+          //   if (result.value) {
               this.router.navigate(["/dashboard"])
-            }
-          })
+          //   }
+          // })
 
           // window.location.href=
           this.credentials.password=''
           this.credentials.username=''
         },
         error=>{
+          this.ngxService.stop()
           //error
           console.log(error);
           Swal.fire({

@@ -8,6 +8,7 @@ import { WalletService } from 'src/app/services/wallet.service';
 import { AllfundService } from 'src/app/services/allfund.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import Swal from 'sweetalert2';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 @Component({
   selector: 'app-portfolio',
   templateUrl: './portfolio.component.html',
@@ -30,7 +31,8 @@ export class PortfolioComponent {
     private walletservice: WalletService,
     private allfunds: AllfundService,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private ngxService: NgxUiLoaderService
   ) {}
 
   getCurrentUser() {
@@ -93,6 +95,7 @@ export class PortfolioComponent {
 
   // }
   sellMethod(fundId: number, price: number, unit: number) {
+    this.ngxService.start()
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     this.http
       .post(
@@ -103,6 +106,8 @@ export class PortfolioComponent {
       .subscribe((res: any) => {
         // alert(res)
         console.log(res);
+
+        this.ngxService.stop()
         Swal.fire({
           title: res === 'Data inserted successfully' ? 'You have sold!' : res,
           icon: res === 'Not enough units' ? 'warning' : 'success',
