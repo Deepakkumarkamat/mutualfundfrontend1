@@ -1,5 +1,9 @@
-<app-navbar></app-navbar>
 
+<ngx-ui-loader fgsColor="teal" pgColor="teal" text="Please wait.." textColor="teal">
+</ngx-ui-loader>
+<div ngxUiLoaderBlurred>
+  <app-navbar></app-navbar>
+  </div>
 <div class="container-fluid-1" *ngIf="this.portfolio.length==0">
   <div
     data-aos="fade-left"
@@ -63,7 +67,7 @@
             <tbody>
               <tr *ngFor="let obj of portfolio" class="zoom">
                 <td data-label="Job Title">
-                  <img [src]="'https://assets-netstorage.groww.in/mf-assets/logos/'+lower(obj.funds?.schemaName)+'_groww.png'" style="width: 31px; height: 31px;"/>
+                  <img class="fund-logo" [src]="'https://assets-netstorage.groww.in/mf-assets/logos/'+lower(obj.funds?.schemaName)+'_groww.png'"/>
                   <span class="text-heading font-semibold">
                     {{ obj.funds?.schemaName }}
                   </span>
@@ -81,6 +85,7 @@
                   <span class="badge bg-soft-success text-success">{{
                     (obj.funds?.currentPrice * obj.unit).toFixed(2)
                   }}</span>
+                  <!-- (obj.funds?.currentPrice * obj.unit).toFixed(2) -->
                 </td>
 
                 <td data-label="">

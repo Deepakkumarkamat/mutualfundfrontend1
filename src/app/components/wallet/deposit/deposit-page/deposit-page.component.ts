@@ -11,6 +11,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { SharedService } from 'src/app/services/shared.service';
 import { LoginService } from 'src/app/services/login.service';
 import Swal from 'sweetalert2';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 @Component({
   selector: 'app-deposit-page',
   templateUrl: './deposit-page.component.html',
@@ -26,7 +27,8 @@ export class DepositPageComponent {
     private api: WalletService,
     private apii: ApiService,
     private sharedservice: SharedService,
-    private loginservice: LoginService
+    private loginservice: LoginService,
+    private ngxService: NgxUiLoaderService
   ) {}
   getCurrentUser() {
     return this.loginservice.getLoggedInUser();
@@ -48,6 +50,7 @@ export class DepositPageComponent {
 
   }
   addMoneyToWallet() {
+    this.ngxService.start()
     this.api.finduserid(this.getCurrentUser()).subscribe((response: any) => {
       console.log(response);
       this.userId = response;
@@ -57,6 +60,7 @@ export class DepositPageComponent {
     this.api.addMoney(this.userId, this.add_balance).subscribe((res: any) => {
       // alert(res);
       this.balance.emit(res);
+      this.ngxService.stop()
 
       Swal.fire({
         title:'Amount Added Succesfully!',
@@ -78,6 +82,7 @@ export class DepositPageComponent {
       //   this.add_balance=''
       //   alert(res);
       // });
+      this.add_balance=''
     });
   });
   }

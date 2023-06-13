@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300&display=swap");
 /* @import url(https://unpkg.com/@webpixels/css/dist/index.css); */
 
 /* .card-body{
@@ -16,10 +16,12 @@
     margin-bottom: 10px;
 } */
 
-table > tbody,th,td{
-    padding:0.65rem;
+table > tbody,
+th,
+td {
+  padding: 0.65rem;
 }
-thead > th{
+thead > th {
   border: solid 2px #333;
 }
 /* thead{
@@ -29,17 +31,23 @@ thead > th{
 background-color: teal;
 } */
 
-.col-3{
-    padding: 10px;
-    display: flexbox;
-    flex-direction: column;
+.col-3 {
+  padding: 10px;
+  display: flexbox;
+  flex-direction: column;
 }
 
-.zoom{
-  transition: tranform .2s;
+.zoom {
+  transition: tranform 0.2s;
 }
-.zoom:hover{
-transform: scale(1);
-/* transition: 0.1ms ease-in-out; */
-box-shadow: 0 4px 8px 0 rgba(242, 238, 238, 0.2), 0 6px 20px 0 rgba(252, 249, 249, 0.19);;
+.zoom:hover {
+  transform: scale(1);
+  /* transition: 0.1ms ease-in-out; */
+  box-shadow: 0 4px 8px 0 rgba(242, 238, 238, 0.2),
+    0 6px 20px 0 rgba(252, 249, 249, 0.19);
+}
+.fund-logo {
+  mix-blend-mode: multiply;
+width: 1.5rem;
+aspect-ratio: 1;
 }

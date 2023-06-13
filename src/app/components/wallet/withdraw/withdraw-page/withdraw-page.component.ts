@@ -3,6 +3,7 @@ import { WalletService } from 'src/app/services/wallet.service';
 import { SharedService } from 'src/app/services/shared.service';
 import { LoginService } from 'src/app/services/login.service';
 import Swal from 'sweetalert2';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-withdraw-page',
@@ -17,7 +18,8 @@ export class WithdrawPageComponent {
   constructor(
     private api: WalletService,
     private sharedservice: SharedService,
-    private loginservice: LoginService
+    private loginservice: LoginService,
+    private ngxService: NgxUiLoaderService
   ) {}
 
   getCurrentUser() {
@@ -32,6 +34,7 @@ export class WithdrawPageComponent {
   }
 
   withdrawMoney() {
+    this.ngxService.start()
     this.api.finduserid(this.getCurrentUser()).subscribe((response: any) => {
       console.log(response);
       this.userId = response;
@@ -42,6 +45,7 @@ export class WithdrawPageComponent {
         .subscribe((res: any) => {
           // alert(res);
           this.balance.emit(res);
+          this.ngxService.stop()
 
           Swal.fire({
             title: res,
@@ -66,6 +70,7 @@ export class WithdrawPageComponent {
           //     this.balancewithdraw=''
           //   });
           // }
+          this.balancewithdraw=''
         });
     });
   }

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { LoginService } from 'src/app/services/login.service';
 import Swal from 'sweetalert2';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 @Component({
   selector: 'app-buying',
   templateUrl: './buying.component.html',
@@ -22,7 +23,8 @@ export class BuyingComponent {
     private route: ActivatedRoute,
     private api: ApiService,
     private loginService: LoginService,
-    private router: Router
+    private router: Router,
+    private ngxService: NgxUiLoaderService
   ) {}
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
@@ -38,6 +40,7 @@ export class BuyingComponent {
     this.success = true;
   }
   buymethod() {
+    this.ngxService.start()
     this.loading = true;
     this.success = false;
 
@@ -54,9 +57,10 @@ export class BuyingComponent {
       )
       .subscribe((res) => {
         console.log(res);
+        this.ngxService.stop()
         Swal.fire({
           title:
-            res === 'Data inserted successfully' ? 'Succesfully Buy!' : res,
+            res === 'Data inserted successfully' ? 'Purchased Succesfully!' : res,
           showConfirmButton: true,
           confirmButtonText: 'ok',
           confirmButtonColor: 'teal',

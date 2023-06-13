@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AnimationItem } from 'lottie-web';
 import { AnimationOptions } from 'ngx-lottie';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { AllfundService } from 'src/app/services/allfund.service';
 import { ApiService } from 'src/app/services/api.service';
 import { LoginService } from 'src/app/services/login.service';
@@ -37,7 +38,8 @@ export class WishlistPageComponent {
     private walletService: WalletService,
     private http: HttpClient,
     private allfunds: AllfundService,
-    private router: Router
+    private router: Router,
+    private ngxService: NgxUiLoaderService
   ) {}
 
   getCurrentUser() {
@@ -80,6 +82,7 @@ export class WishlistPageComponent {
   }
 
   removeWishList(customerId: number, mutualfundId: number) {
+    this.ngxService.start()
     const headers = { 'Content-Type': 'application/text' };
     return this.http
       .post(
@@ -88,8 +91,9 @@ export class WishlistPageComponent {
         { headers: headers, responseType: 'text' }
       )
       .subscribe((res: any) => {
+        this.ngxService.stop()
         Swal.fire({
-          title: 'Removed!',
+          title: 'Removed from Wishlist!',
           icon: 'success',
           showConfirmButton: false,
           timer: 2000,

@@ -50,6 +50,7 @@ export class VarifyotpComponent {
   otp: any = '';
   ngOnInit() {
     this.email = this.route.snapshot.paramMap.get('email');
+
   }
   submitOTP() {
     document.querySelectorAll('#otp > *[id]').forEach((input: any) => {

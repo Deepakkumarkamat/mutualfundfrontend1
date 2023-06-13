@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { LoginService } from 'src/app/services/login.service';
 import Swal from 'sweetalert2';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-sip',
@@ -25,7 +26,8 @@ export class SipComponent {
     private route: ActivatedRoute,
     private api: ApiService,
     private loginService: LoginService,
-    private router: Router
+    private router: Router,
+    private ngxService: NgxUiLoaderService
   ) {}
 
   ngOnInit() {
@@ -39,12 +41,13 @@ export class SipComponent {
 
   }
   continue() {
-    this.unit = (
+    this.unit =
       Number(this.amount) / Number(this.fundDetails.currentPrice)
-    ).toFixed(3);
+    // ).toFixed(3);
     this.success = true;
   }
   buymethod() {
+    this.ngxService.start()
     this.success = false;
     this.loading = true;
 
@@ -63,8 +66,9 @@ export class SipComponent {
               {},{ headers: headers, responseType: 'text' }
             )
             .subscribe((res) => {
+              this.ngxService.stop()
               Swal.fire({
-                title:res==='Data inserted successfully'?'Succesfully Buy!':res,
+                title:res==='Data inserted successfully'?'Purchased Succesfully!':res,
                 showConfirmButton:true,
                 confirmButtonText:'ok',
                 confirmButtonColor:'teal'

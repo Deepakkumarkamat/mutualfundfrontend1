@@ -1,4 +1,8 @@
-<app-navbar></app-navbar>
+<ngx-ui-loader fgsColor="teal" pgColor="teal" text="Please wait.." textColor="teal">
+</ngx-ui-loader>
+<div ngxUiLoaderBlurred>
+  <app-navbar></app-navbar>
+  </div>
     <div class="container">
       <form>
         <div class="c1 mb-3">
@@ -82,7 +86,7 @@
               </tr> -->
               <tr>
                 <th>Unit :-</th>
-                <td>{{unit}}</td>
+                <td>{{(unit).toFixed(2)}}</td>
               </tr>
               <tr>
                 <th>Amount :-</th>

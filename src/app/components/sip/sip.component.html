@@ -1,4 +1,8 @@
-<app-navbar></app-navbar>
+<ngx-ui-loader fgsColor="teal" pgColor="teal" text="Please wait.." textColor="teal">
+</ngx-ui-loader>
+<div ngxUiLoaderBlurred>
+  <app-navbar></app-navbar>
+  </div>
 <div class="container">
   <form class="c4">
     <h2 style="margin-top: 40px; margin-bottom: 30px">
@@ -17,7 +21,7 @@
       <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="freq" [(ngModel)]="freq" required placehodelder>
         <option value="">Select SIP frequency</option>
         <option value="Daily">Daily</option>
-        <option value="Weakly">Weakly</option>
+        <option value="Weakly">Weekly</option>
         <option value="Monthly">Monthly</option>
         <option value="Quarterly">Quarterly</option>
       </select>
@@ -88,7 +92,7 @@
               </tr>
               <tr>
                 <th>Unit :-</th>
-                <td>{{unit}}</td>
+                <td>{{(unit.toFixed(2))}}</td>
               </tr>
               <tr>
                 <th>Amount :-</th>

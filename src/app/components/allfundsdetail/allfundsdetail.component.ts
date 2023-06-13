@@ -5,6 +5,7 @@ import { WishlistpageService } from 'src/app/services/wishlistpage.service';
 import { LoginService } from 'src/app/services/login.service';
 import { WalletService } from 'src/app/services/wallet.service';
 import Swal from 'sweetalert2';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-allfundsdetail',
@@ -27,7 +28,13 @@ export class AllfundsdetailComponent {
   getCurrentUser() {
     return this.loginservice.getLoggedInUser();
   }
-  constructor(private walletService:WalletService, private apii: ApiService, private router:Router, private route: ActivatedRoute,private wishlistService:WishlistpageService,private loginservice:LoginService) {}
+  constructor(private walletService:WalletService,
+    private apii: ApiService, private router:Router,
+    private route: ActivatedRoute,
+    private wishlistService:WishlistpageService,
+    private loginservice:LoginService,
+    private ngxService: NgxUiLoaderService
+    ) {}
   ngOnInit() {
 
 
@@ -121,7 +128,9 @@ export class AllfundsdetailComponent {
 
   //forWishList...
   add(){
+    this.ngxService.start()
     if(!this.loginservice.isLoggedIn()){
+      this.ngxService.stop()
       Swal.fire({
         title:"Please login",
         // text:'Please login!',
@@ -142,7 +151,7 @@ export class AllfundsdetailComponent {
 
       this.wishlistService.addToWishList(this.userId,this.id).subscribe((res:any)=>{
         console.log(res)
-
+        this.ngxService.stop()
         Swal.fire({
           title:res==='Data added successfully'?'Fund added successfully to wishlist!':'Already exists in wishlist' ,
           icon:res==-''?'warning':'success',
@@ -157,6 +166,7 @@ export class AllfundsdetailComponent {
         })
       })
     },(error)=>{
+      this.ngxService.stop()
       console.log(error)
     })
 
