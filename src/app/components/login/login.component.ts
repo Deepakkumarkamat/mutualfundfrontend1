@@ -52,6 +52,7 @@ newusername(){
 
     if((this.credentials.username!='' && this.credentials.password!='')&& (this.credentials.username!=null && this.credentials.password!=null)){
       console.log("We have to submit the form to server!!");
+      this.ngxService.stop()
       //token generate
 
       this.loginService.generateToken(this.credentials).subscribe(
@@ -103,6 +104,7 @@ newusername(){
         }
       )
     }else{
+      this.ngxService.stop()
       console.log("Fields are Empty")
     }
   }
