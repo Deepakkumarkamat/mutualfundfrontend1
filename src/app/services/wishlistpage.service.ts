@@ -23,8 +23,5 @@ export class WishlistpageService {
     return this.http.get(`http://34.234.150.41:5152/wishlist/${customerId}`)
   }
 
-  removeWishList(customerId:number,mutualfundId:number){
-    const headers = {'Content-Type':'application/text'}
-    return this.http.post(`http://34.234.150.41:5152/wishlist/remove?customerId=${customerId}&mutualfundId=${mutualfundId}`,{},{headers:headers,responseType:'text'})
-  }
+  
 }

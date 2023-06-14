@@ -52,4 +52,8 @@ export class WalletService {
     return this.http.get(`http://34.234.150.41:5151/transactionhistory/userid/${username}`)
     }
 
+    usedAmount(customerId:number){
+      return this.http.get(`http://34.234.150.41:1111/mutualfunds/wallet/update/used?customerId=${customerId}`)
+    }
+
 }

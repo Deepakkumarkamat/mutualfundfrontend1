@@ -14,6 +14,7 @@ export class WalletComponent {
 showWithdrawCard:boolean=false;
 showTransactionList:boolean=false;
 email:any
+usedAmount:any
 userId:number|any
   walletAmount:any[]=[];
   wallet={
@@ -38,12 +39,18 @@ userId:number|any
       this.userId =response
       console.log(this.userId)
 
+
       console.log(this.userId)
       this.api.walletBalance(this.userId).subscribe((res:any)=>{
         console.log(res)
         return this.wallet.balance = Number(res).toFixed(2);
-      })
 
+
+      })
+      this.api.usedAmount(this.userId).subscribe((res:any)=>{
+        console.log(res)
+        return this.usedAmount = res;
+      })
     })
 
 
@@ -53,7 +60,9 @@ userId:number|any
     console.log(res)
     this.api.walletBalance(this.userId).subscribe((res:any)=>{
       return this.wallet.balance = Number(res).toFixed(2);
+
     })
+
   }
   showDeposit(){
    this.showDepositCard = true;
