@@ -71,7 +71,12 @@ export class WithdrawPageComponent {
           //   });
           // }
           this.balancewithdraw=''
-        });
+        },
+        (error)=>{
+          console.log(error);
+          this.ngxService.stop()
+        }
+        );
     });
   }
 }

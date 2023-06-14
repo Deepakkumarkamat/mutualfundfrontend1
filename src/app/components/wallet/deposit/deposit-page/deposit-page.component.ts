@@ -83,7 +83,12 @@ export class DepositPageComponent {
       //   alert(res);
       // });
       this.add_balance=''
-    });
+    },
+    (error)=>{
+      console.log(error)
+      this.ngxService.stop()
+    }
+    );
   });
   }
   // transactionHistory() {
